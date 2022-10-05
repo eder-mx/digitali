@@ -1,5 +1,5 @@
 const { where } = require('sequelize');
-const Lugar = require('../models/clients');
+const Lugar = require('../models/places');
 
 async function createLugar(req, res) {
   const body = req.body;

@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {
-  createCliente,
+  signUpCliente,
+  logInCliente,
   getCliente,
   getClientes,
   updateCliente,
@@ -9,8 +10,9 @@ const {
 
 router.get('/', getClientes);
 router.get('/:id', getCliente);
-router.post('/', createCliente);
 router.patch('/:id', updateCliente);
 router.delete('/:id', deleteCliente);
+router.post('/signUp', signUpCliente);
+router.post('/logIn', logInCliente);
 
 module.exports = router;

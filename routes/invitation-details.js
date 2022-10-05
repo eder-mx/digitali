@@ -2,12 +2,12 @@ const router = require('express').Router();
 const {
   createInvDetalle,
   getInvDetalle,
-  getInvDetallees,
+  getInvDetalles,
   updateInvDetalle,
   deleteInvDetalle
 } = require('../controllers/invitation-details');
 
-router.get('/', getInvDetallees);
+router.get('/', getInvDetalles);
 router.get('/:id', getInvDetalle);
 router.post('/', createInvDetalle);
 router.patch('/:id', updateInvDetalle);

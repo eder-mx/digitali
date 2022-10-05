@@ -1,5 +1,5 @@
 const { where } = require('sequelize');
-const InvDetalle = require('../models/clients');
+const InvDetalle = require('../models/invitation-details');
 
 async function createInvDetalle(req, res) {
   const body = req.body;

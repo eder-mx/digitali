@@ -1,5 +1,5 @@
 const { where } = require('sequelize');
-const Evento = require('../models/clients');
+const Evento = require('../models/events');
 
 async function createEvento(req, res) {
   const body = req.body;

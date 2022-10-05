@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const clientes = require('./clients');
 const eventos = require('./events');
-//const invDetalle = require('./invitation-details');
+const invDetalle = require('./invitation-details');
 const invitationes = require('./invitations');
 const lugares = require('./places');
 
@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 
 router.use('/clients', clientes);
 router.use('/events', eventos);
-//router.use('/invDetail', invDetalle);
+router.use('/invDetail', invDetalle);
 router.use('/invitations', invitationes);
 router.use('/places', lugares);
 

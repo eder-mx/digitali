@@ -6,11 +6,12 @@ const {
   updateInvitacion,
   deleteInvitacion
 } = require('../controllers/invitations');
+const auth = require('../config/auth');
 
 router.get('/', getInvitaciones);
 router.get('/:id', getInvitacion);
-router.post('/', createInvitacion);
-router.patch('/:id', updateInvitacion);
-router.delete('/:id', deleteInvitacion);
+router.post('/', auth.required, createInvitacion);
+router.patch('/:id', auth.required, updateInvitacion);
+router.delete('/:id', auth.required, deleteInvitacion);
 
 module.exports = router;

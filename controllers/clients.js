@@ -1,7 +1,6 @@
 const Cliente = require('../models/clients');
 const crypto = require('node:crypto');
 
-
 async function signUpCliente(req, res) {
   const body = req.body;
   try {
@@ -27,7 +26,11 @@ async function signUpCliente(req, res) {
 
 async function logInCliente(req, res) {
   const body = req.body;
-  const cliente = await Cliente.findOne({ where: { usuario: body['usuario'] } });
+  const cliente = await Cliente.findOne({
+    where: {
+      usuario: body['usuario']
+    }
+  });
   if (!cliente) { // Revisar si existe o no el usuario...
     return res.status(404).json({
       error: "Usuario no encontrado"
@@ -35,8 +38,11 @@ async function logInCliente(req, res) {
   }
   if (Cliente.validatePassword(body['password'], cliente.password_salt, cliente.password_hash)) {
     return res.status(200).json({
+      usuario: cliente.usuario,
+      correo: cliente.correo,
+      token: Cliente.generateJWT(cliente),
       mensaje: "Bienvenido"
-    })
+    });
   } else {
     return res.status(400).json({
       mensaje: "Password incorrecto"
@@ -58,17 +64,23 @@ async function getClientes(req, res) {
 async function updateCliente(req, res) {
   const id = req.params.id;
   const cliente = req.body;
-  
-  const update = await Cliente.update(cliente, {where: {id}});  // {id} es abreviacion de id:id <-- nombre del campo en la BD y nombre de la constiable que tiene el dato  
+
+  const update = await Cliente.update(cliente, {
+    where: {
+      id
+    }
+  }); // {id} es abreviacion de id:id <-- nombre del campo en la BD y nombre de la constiable que tiene el dato  
   const clienteUpdate = await Cliente.findByPk(id);
   res.status(200).json(clienteUpdate);
 }
 
 async function deleteCliente(req, res) {
   const id = req.params.id;
-  const gotDelete = Cliente.destroy(
-    {where: {id: id}}
-  ); 
+  const gotDelete = Cliente.destroy({
+    where: {
+      id: id
+    }
+  });
   res.status(200).json(gotDelete);
 }
 

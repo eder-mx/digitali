@@ -6,11 +6,12 @@ const {
   updateLugar,
   deleteLugar
 } = require('../controllers/places');
+const auth = require('../config/auth');
 
 router.get('/', getLugares);
 router.get('/:id', getLugar);
-router.post('/', createLugar);
-router.patch('/:id', updateLugar);
-router.delete('/:id', deleteLugar);
+router.post('/', auth.isAdmin, createLugar);
+router.patch('/:id', auth.isAdmin, updateLugar);
+router.delete('/:id', auth.isAdmin, deleteLugar);
 
 module.exports = router;

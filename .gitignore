@@ -1,1 +1,6 @@
+# node modules
 node_modules
+
+# dotenv envioment variables files
+.env
+.env.example

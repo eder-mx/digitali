@@ -7,7 +7,6 @@ async function createLugar(req, res) {
   res.status(201).json(lugar);
 }
 
-
 async function getLugar(req, res) {
   const id = req.params.id;
   const lugar = await Lugar.findByPk(id);

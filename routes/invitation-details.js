@@ -6,11 +6,12 @@ const {
   updateInvDetalle,
   deleteInvDetalle
 } = require('../controllers/invitation-details');
+const auth = require('../config/auth');
 
 router.get('/', getInvDetalles);
 router.get('/:id', getInvDetalle);
-router.post('/', createInvDetalle);
-router.patch('/:id', updateInvDetalle);
-router.delete('/:id', deleteInvDetalle);
+router.post('/', auth.required, createInvDetalle);
+router.patch('/:id', auth.required, updateInvDetalle);
+router.delete('/:id', auth.required, deleteInvDetalle);
 
 module.exports = router;

@@ -7,7 +7,6 @@ async function createEvento(req, res) {
   res.status(201).json(evento);
 }
 
-
 async function getEvento(req, res) {
   const id = req.params.id;
   const evento = await Evento.findByPk(id);

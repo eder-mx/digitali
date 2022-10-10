@@ -1,9 +1,11 @@
 const express = require('express');
 const sequelize = require('./config/db.js')
 const routes = require('./routes');  // Hace llamado al archivo index.js... como es index no se requiere el llamado explicito
+const auth = require('./config/auth')
 
 const app = express();
 app.use(express.json()); 
+app.use(auth.optional);
 app.use('/invitaciones', routes);
 
 try{
